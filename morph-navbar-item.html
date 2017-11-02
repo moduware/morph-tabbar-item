@@ -4,19 +4,18 @@
 <dom-module id="morph-navbar-item">
   <template>
     <style>
-      :host([selected]) .container{
-
+      :host {
+        display: inline-block;
       }
 
-      .container {
-        display: inline-block;
+      :host([selected]) {
       }
 
 
 
     </style>
-      <span class="container" name="[[name]]">
-        <img class="icon" id="icon" src="[[image]]" style$="width:[[width]];height:[[height]];"></img>
+      <span name="[[name]]">
+        <img class="icon" id="icon"></img>
       </span>
   </template>
 
@@ -38,7 +37,12 @@
             reflectToAttribute: true,
             notify: true
           },
-          image: {
+          selectedImage: {
+            type: String,
+            reflectToAttribute: true,
+            notify: true
+          },
+          notSelectedImage: {
             type: String,
             reflectToAttribute: true,
             notify: true
@@ -61,6 +65,26 @@
           }
         };
       }
+      static get observers() {
+        return [
+          'selectedObserver(selected)',
+        ];
+      }
+
+      selectedObserver(changes) {
+        this.setImageSource();
+      }
+
+      setImageSource() {
+        if (this.selected) {
+          //if selected-image source is not specified, fallback is the not-selected-image source.
+          this.$.icon.src = this.selectedImage || this.notSelectedImage;
+        } else {
+          this.$.icon.src = this.notSelectedImage;
+        }
+      }
+
+
 
     }
 
