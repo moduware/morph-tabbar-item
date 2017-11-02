@@ -4,22 +4,19 @@
 <dom-module id="morph-navbar-item">
   <template>
     <style>
-      :host {
+      :host([selected]) .container{
 
       }
 
-      span {
-      /*For using background-image instead of img*/
-        /*display: inline-block;
-        width:   100px;
-        height:  100px;
-        background-repeat:no-repeat;
-        background-size: 100%;*/
+      .container {
+        display: inline-block;
       }
+
+
 
     </style>
-      <span name=[[name]]>
-        <img src="[[image]]"></img>
+      <span class="container" name="[[name]]">
+        <img class="icon" id="icon" src="[[image]]" style$="width:[[width]];height:[[height]];"></img>
       </span>
   </template>
 
@@ -45,9 +42,26 @@
             type: String,
             reflectToAttribute: true,
             notify: true
+          },
+          width: {
+            type: String,
+            reflectToAttribute: true,
+            notify: true
+          },
+          height: {
+            type: String,
+            reflectToAttribute: true,
+            notify: true
+          },
+          selected: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+            notify: true
           }
         };
       }
+
     }
 
     window.customElements.define(MorphNavbarItem.is, MorphNavbarItem);
