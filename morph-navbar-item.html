@@ -4,20 +4,21 @@
 <dom-module id="morph-navbar-item">
   <template>
     <style>
+
       :host {
         display: inline-block;
+        text-align: center;
       }
 
       :host([selected]) {
       }
-
-
 
     </style>
       <span name="[[name]]">
         <img class="icon" id="icon"></img>
       </span>
   </template>
+
 
   <script>
     /**
@@ -83,9 +84,6 @@
           this.$.icon.src = this.notSelectedImage;
         }
       }
-
-
-
     }
 
     window.customElements.define(MorphNavbarItem.is, MorphNavbarItem);
