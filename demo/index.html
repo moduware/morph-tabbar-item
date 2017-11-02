@@ -22,10 +22,16 @@
       <h3>Basic morph-navbar-item demo</h3>
       <demo-snippet>
         <template>
-          <morph-navbar-item name="favorite" image="../img/icon.png" width="30px" selected>
+          </morph-navbar-item>
+          <morph-navbar-item id="favorite" name="favorite" not-selected-image="../img/icon.png" selected-image="../img/icon_selected.png" onclick="selectItem()">
           </morph-navbar-item>
         </template>
       </demo-snippet>
     </div>
+    <script>
+      function selectItem() {
+        document.getElementById('favorite').setAttribute("selected", true);
+      }
+    </script>
   </body>
 </html>
