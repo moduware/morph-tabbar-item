@@ -14,6 +14,10 @@
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
+
+      morph-navbar-item {
+        margin-right: 10px;
+      }
       </style>
     </custom-style>
   </head>
@@ -22,16 +26,45 @@
       <h3>Basic morph-navbar-item demo</h3>
       <demo-snippet>
         <template>
+          <h3>Ios morph-navbar-item demo</h3>
           </morph-navbar-item>
-          <morph-navbar-item id="favorite" name="favorite" not-selected-image="../img/icon.png" selected-image="../img/icon_selected.png" onclick="selectItem()">
+          <morph-navbar-item id="first-item" platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg">
+          </morph-navbar-item>
+          <morph-navbar-item id="second-item" platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected></morph-navbar-item>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <h3>Ios morph-navbar-item with label</h3>
+          </morph-navbar-item>
+          <morph-navbar-item id="first-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg"  label>
+          </morph-navbar-item>
+          <morph-navbar-item id="second-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected label label-color="#D12F3D">
+          </morph-navbar-item>
+        </template>
+      </demo-snippet>
+      <h3>Android morph-navbar-item demo</h3>
+      <demo-snippet>
+        <template>
+          </morph-navbar-item>
+          <morph-navbar-item id="first-item" platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg">
+          </morph-navbar-item>
+          <morph-navbar-item id="second-item" platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected></morph-navbar-item>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <h3>Android morph-navbar-item with label</h3>
+          </morph-navbar-item>
+          <morph-navbar-item id="first-item" platform="android" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg"  label>
+          </morph-navbar-item>
+          <morph-navbar-item id="second-item" platform="android" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected label label-color="#D12F3D">
           </morph-navbar-item>
         </template>
       </demo-snippet>
     </div>
     <script>
-      function selectItem() {
-        document.getElementById('favorite').setAttribute("selected", true);
-      }
+
     </script>
   </body>
 </html>

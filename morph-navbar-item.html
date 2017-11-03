@@ -10,12 +10,40 @@
         text-align: center;
       }
 
-      :host([selected]) {
+      :host([label]) .label {
+        display: block;
+        margin: 0;
+        position: relative;
+      }
+
+      :host([platform="ios"][label]) .label {
+        color:#929292;
+        line-height: 10px;
+        margin: 0;
+        font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif"
+        letter-spacing: .01em;
+        font-size: 10px;
+      }
+
+      :host([platform="android"][label]) .label {
+        line-height: 1;
+        color: #929292;
+        margin: 0;
+        margin-top:10px;
+        font-family: "Roboto", "Noto", "Arial", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: .01em;
+        font-size: 14px;
+      }
+
+      :host(:not([label])) .label {
+        display: none;
       }
 
     </style>
       <span name="[[name]]">
         <img class="icon" id="icon"></img>
+        <span id="label" class="label" style$="color:[[labelColor]]">[[name]]</span>
       </span>
   </template>
 
@@ -48,19 +76,20 @@
             reflectToAttribute: true,
             notify: true
           },
-          width: {
-            type: String,
-            reflectToAttribute: true,
-            notify: true
-          },
-          height: {
-            type: String,
-            reflectToAttribute: true,
-            notify: true
-          },
           selected: {
             type: Boolean,
             value: false,
+            reflectToAttribute: true,
+            notify: true
+          },
+          label: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+            notify: true
+          },
+          labelColor: {
+            type: String,
             reflectToAttribute: true,
             notify: true
           }
@@ -71,6 +100,7 @@
           'selectedObserver(selected)',
         ];
       }
+
 
       selectedObserver(changes) {
         this.setImageSource();
