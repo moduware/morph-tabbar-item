@@ -1,13 +1,47 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../morph-element/morph-element.html">
+<link rel="import" href="../morph-shared-colors/morph-shared-colors.html">
+
 
 <dom-module id="morph-navbar-item">
   <template>
     <style>
 
       :host {
+        --ios-grey:var(--polymorph-ios-gray-color);
+        --android-grey: var(--polymorph-android-gray-color);
+        --selected-label-color: #D12F3D;
+
+
         display: inline-block;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      :host([platform="ios"]) {
+        --color: var(--ios-grey);
+      }
+
+      :host([platform="android"]) {
+        --color: var(--android-grey);
+        --ripple-color: var(--color);
+      }
+
+      :host([platform="android"][selected])  .label {
+        --color: var(--selected-label-color);
+      }
+
+      :host([platform="android"][selected]) {
+        --ripple-color: var(--selected-label-color);
+      }
+
+      :host([platform="ios"][selected])  .label {
+        --color: var(--selected-label-color);
+      }
+
+      span {
+        display: block;
       }
 
       :host([label]) .label {
@@ -17,7 +51,7 @@
       }
 
       :host([platform="ios"][label]) .label {
-        color:#929292;
+        color:var(--color);
         line-height: 10px;
         margin: 0;
         font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif"
@@ -27,7 +61,7 @@
 
       :host([platform="android"][label]) .label {
         line-height: 1;
-        color: #929292;
+        color: var(--color);
         margin: 0;
         margin-top:10px;
         font-family: "Roboto", "Noto", "Arial", sans-serif;
@@ -40,11 +74,36 @@
         display: none;
       }
 
+      /* Ripple effect for buttons on Android */
+      .ripple--container {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        pointer-events: none;
+      }
+
+      .ripple--container span {
+        transform: scale(0);
+        border-radius: 100%;
+        position: absolute;
+        opacity: 0.75;
+        background-color: var(--ripple-color);
+        animation: ripple 1000ms;
+      }
+
+      @keyframes ripple {
+        to {
+          opacity: 0;
+          transform: scale(2);
+        }
+      }
+
     </style>
       <span name="[[name]]">
         <img class="icon" id="icon"></img>
         <span id="label" class="label" style$="color:[[labelColor]]">[[name]]</span>
+        <div id="rippleContainer" class="ripple--container"></div>
       </span>
+
   </template>
 
 
@@ -87,11 +146,6 @@
             value: false,
             reflectToAttribute: true,
             notify: true
-          },
-          labelColor: {
-            type: String,
-            reflectToAttribute: true,
-            notify: true
           }
         };
       }
@@ -99,6 +153,41 @@
         return [
           'selectedObserver(selected)',
         ];
+      }
+      ready() {
+        super.ready();
+
+        /**
+         * Gesture addListener down
+         *
+         * @param  {Object} this - the button element
+         * @param  {string} 'down' - event from key down that we want to listen
+         * @param  {Object} e - refers to the element that event down have happened
+         *
+         */
+        Polymer.Gestures.addListener(this, 'down', e => {
+          if (e.srcElement.platform == 'android') {
+            this.showRipple(e)
+          }
+        });
+
+        /**
+         * Gestures addListener up
+         *
+         * @param  {Object} this - the button element
+         * @param  {string} 'up' - the type of event we want to listen which is the key up or finger up
+         * @param  {Object} e    - refers to the element that event up have happened
+         *
+         * _debounce will limit the ripple function will fire
+         */
+        Polymer.Gestures.addListener(this, 'up', e => {
+          this._debounce = Polymer.Debouncer.debounce(
+            this._debounce,
+            Polymer.Async.timeOut.after(1000),
+            () => this.cleanUp()
+          );
+        });
+
       }
 
 
@@ -112,6 +201,47 @@
           this.$.icon.src = this.selectedImage || this.notSelectedImage;
         } else {
           this.$.icon.src = this.notSelectedImage;
+        }
+      }
+
+      /**
+       * showRipple gives material design-like ripple effect when buttons are click
+       *
+       * @param  {Object} e - the button element that the event key down or finger down has happen
+       *
+       * @return {Object}   - returns the style attribute of the button element with corresponding css styling related to the ripple effect
+       */
+      showRipple(e) {
+        const ripple = document.createElement('span');
+        const size = this.offsetWidth;
+        const pos = this.getBoundingClientRect();
+
+        // for computation of style top and left using Polymer Gesture implementation
+        const x = e.detail.x - pos.left - size / 2;
+        const y = e.detail.y - pos.top - size / 2;
+
+        const style =
+          'top:' +
+          y +
+          'px; left: ' +
+          x +
+          'px; height: ' +
+          size +
+          'px; width: ' +
+          size +
+          'px; '
+
+
+        this.$.rippleContainer.appendChild(ripple);
+        return ripple.setAttribute('style', style);
+      }
+
+      /**
+       * clean up the container for the ripple effect
+       */
+      cleanUp() {
+        while (this.$.rippleContainer.firstChild) {
+          this.$.rippleContainer.removeChild(this.$.rippleContainer.firstChild);
         }
       }
     }
