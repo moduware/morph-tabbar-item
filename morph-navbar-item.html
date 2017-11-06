@@ -21,11 +21,15 @@
 
       :host([platform="ios"]) {
         --color: var(--ios-grey);
+        padding-top: 4px;
+        padding-bottom: 4px;
       }
 
       :host([platform="android"]) {
         --color: var(--android-grey);
         --ripple-color: var(--color);
+        padding-top: 12px;
+        padding-bottom: 12px;
       }
 
       :host([platform="android"][selected])  .label {
@@ -68,6 +72,7 @@
         text-transform: uppercase;
         letter-spacing: .01em;
         font-size: 14px;
+        max-width: 100%;
       }
 
       :host(:not([label])) .label {
