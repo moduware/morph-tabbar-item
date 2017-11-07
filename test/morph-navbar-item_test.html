@@ -8,20 +8,149 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
-
     <link rel="import" href="../morph-navbar-item.html">
   </head>
   <body>
 
-    <test-fixture id="BasicTestFixture">
+    <test-fixture id="BasicAndroidFixture">
       <template>
-        <morph-navbar-item></morph-navbar-item>
+        <morph-navbar-item platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg"></morph-navbar-item>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="AndroidFixtureLabel">
+      <template>
+        <morph-navbar-item platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" label></morph-navbar-item>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="BasicIosFixture">
+      <template>
+        <morph-navbar-item platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg"></morph-navbar-item>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="IosFixtureLabel">
+      <template>
+        <morph-navbar-item platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" label></morph-navbar-item>
       </template>
     </test-fixture>
 
 
     <script>
+      describe('morph-navbar-item', function() {
 
+        // testing default Android Navbar Item properties
+        context('Android Default Navbar Item', function() {
+          // declare variable for item in this context only
+          let item;
+
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            item = fixture('BasicAndroidFixture');
+            style = getComputedStyle(item);
+
+            // mocking showRipple method of our morph-navbar-item
+            stub('morph-navbar-item', {
+              showRipple: function() {
+                console.log('showRipple was called!');
+              }
+            });
+
+          });
+
+          it('instantiating the item on android platform with default properties works', function() {
+            // testing for default colors and which platform was set in html markup
+            expect(item.platform).to.be.equal('android');
+            expect(item.hasAttribute('selected-image')).to.be.true
+            expect(item.hasAttribute('not-selected-image')).to.be.true;
+
+            // // test for default ripple effect of android item.
+            let mouseDown = new Event('down');
+            item.dispatchEvent(mouseDown);
+            // // item.cleanUp();
+            // // Count # of calls to showRipple
+            expect(item.showRipple.callCount).to.be.equal(1);
+          });
+        });
+
+        // testing default Android Navbar Item properties
+        context('Android Default Navbar Item with label', function() {
+          // declare variable for item in this context only
+          let item;
+
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            item = fixture('AndroidFixtureLabel');
+
+            // mocking showRipple method of our morph-navbar-item
+            stub('morph-navbar-item', {
+              showRipple: function() {
+                console.log('showRipple was called!');
+              }
+            });
+
+          });
+
+          it('instantiating the item with label on android platform with label properties works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(item.platform).to.be.equal('android');
+            expect(item.hasAttribute('selected-image')).to.be.true
+            expect(item.hasAttribute('not-selected-image')).to.be.true;
+            expect(item.hasAttribute('label')).to.be.true;
+            expect(item.hasAttribute('name')).to.be.true;
+
+            // // test for default ripple effect of android item.
+            let mouseDown = new Event('down');
+            item.dispatchEvent(mouseDown);
+            // // item.cleanUp();
+            // // Count # of calls to showRipple
+            expect(item.showRipple.callCount).to.be.equal(1);
+          });
+        });
+
+        // testing default Ios Navbar Item properties
+        context('Ios Default Navbar Item', function() {
+          // declare variable for item in this context only
+          let item;
+
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            item = fixture('BasicIosFixture');
+          });
+
+          it('instantiating the item on ios platform with default properties works', function() {
+            // testing for default properties and which platform was set in html markup
+            expect(item.platform).to.be.equal('ios');
+            expect(item.hasAttribute('selected-image')).to.be.true
+            expect(item.hasAttribute('not-selected-image')).to.be.true;
+          });
+        });
+
+        // testing Ios Navbar Item with Label properties
+        context('Ios Default Navbar Item with label', function() {
+          // declare variable for item in this context only
+          let item;
+
+          // Create a test fixture
+          beforeEach(function() {
+            // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
+            item = fixture('IosFixtureLabel');
+          });
+
+          it('instantiating the item on ios platform with label properties works', function() {
+            // testing for properties and which platform was set in html markup
+            expect(item.platform).to.be.equal('ios');
+            expect(item.hasAttribute('selected-image')).to.be.true
+            expect(item.hasAttribute('not-selected-image')).to.be.true;
+            expect(item.hasAttribute('label')).to.be.true;
+            expect(item.hasAttribute('name')).to.be.true;
+          });
+        });
+      })
     </script>
 
   </body>
