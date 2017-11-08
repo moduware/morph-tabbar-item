@@ -43,13 +43,15 @@
         // testing default Android Navbar Item properties
         context('Android Default Navbar Item', function() {
           // declare variable for item in this context only
-          let item, style;
+          let item, label, style;
 
           // Create a test fixture
           beforeEach(function() {
             // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
             item = fixture('BasicAndroidFixture');
-            // style = getComputedStyle(item);
+            label = item.root.querySelector('.label');
+            style = getComputedStyle(label);
+
 
             // mocking showRipple method of our morph-navbar-item
             stub('morph-navbar-item', {
@@ -65,8 +67,15 @@
             expect(item.platform).to.be.equal('android');
             expect(item.hasAttribute('selected-image')).to.be.true
             expect(item.hasAttribute('not-selected-image')).to.be.true;
+          });
 
-            // test for default ripple effect of android item.
+          it('checking the item display style on android platform works', function() {
+            // checks if the label is shown or not
+            expect(style.display).to.be.equal("none");
+          });
+
+          it('Adding the ripple effect on android platform works', function() {
+            // testing for default ripple effect of android item
             let mouseDown = new Event('down');
             item.dispatchEvent(mouseDown);
             // item.cleanUp();
@@ -78,12 +87,14 @@
         // testing default Android Navbar Item properties
         context('Android Default Navbar Item with label', function() {
           // declare variable for item in this context only
-          let item;
+          let item, label, style;
 
           // Create a test fixture
           beforeEach(function() {
             // assigning item fixture for this context. This will automatically removed on the teardown phase of this test context
             item = fixture('AndroidFixtureLabel');
+            label = item.root.querySelector('.label');
+            style = getComputedStyle(label);
 
             // mocking showRipple method of our morph-navbar-item
             stub('morph-navbar-item', {
@@ -101,20 +112,30 @@
             expect(item.hasAttribute('not-selected-image')).to.be.true;
             expect(item.hasAttribute('label')).to.be.true;
             expect(item.hasAttribute('name')).to.be.true;
+          });
 
-            // // test for default ripple effect of android item.
+          it('checking the item display style on android platform works', function() {
+            // checks if the label is shown or not
+            expect(style.display).to.be.equal("block");
+          });
+
+          it('Adding the ripple effect on android platform works', function() {
+            // testing for default ripple effect of android item
             let mouseDown = new Event('down');
             item.dispatchEvent(mouseDown);
-            // // item.cleanUp();
-            // // Count # of calls to showRipple
+            // item.cleanUp();
+            // Count # of calls to showRipple
             expect(item.showRipple.callCount).to.be.equal(1);
           });
+
+
+
         });
 
         // testing default Ios Navbar Item properties
         context('Ios Default Navbar Item', function() {
           // declare variable for item in this context only
-          let item;
+          let item, label, style;
 
           // Create a test fixture
           beforeEach(function() {
@@ -122,6 +143,13 @@
             item = fixture('BasicIosFixture');
             label = item.root.querySelector('.label');
             style = getComputedStyle(label);
+
+            // mocking showRipple method of our morph-navbar-item
+            stub('morph-navbar-item', {
+              showRipple: function() {
+                console.log('showRipple was called!');
+              }
+            });
           });
 
           it('instantiating the item on ios platform with default properties works', function() {
@@ -135,12 +163,21 @@
             // checks if the label is shown or not
             expect(style.display).to.be.equal("none");
           });
+
+          it('Not having the ripple effect on ios platform works', function() {
+            // testing for default ripple effect of ios item
+            let mouseDown = new Event('down');
+            item.dispatchEvent(mouseDown);
+            // item.cleanUp();
+            // Count # of calls to showRipple
+            expect(item.showRipple.callCount).to.be.equal(0);
+          });
         });
 
         // testing Ios Navbar Item with Label properties
         context('Ios Default Navbar Item with label', function() {
           // declare variable for item in this context only
-          let item, element, style;
+          let item, label, style;
 
           // Create a test fixture
           beforeEach(function() {
@@ -148,6 +185,13 @@
             item = fixture('IosFixtureLabel');
             label = item.root.querySelector('.label');
             style = getComputedStyle(label);
+
+            // mocking showRipple method of our morph-navbar-item
+            stub('morph-navbar-item', {
+              showRipple: function() {
+                console.log('showRipple was called!');
+              }
+            });
           });
 
 
@@ -163,6 +207,15 @@
           it('checking the item display style on ios platform works', function() {
             // checks if the label is shown or not
             expect(style.display).to.be.equal("block");
+          });
+
+          it('Not having the ripple effect on ios platform works', function() {
+            // testing for default ripple effect of ios item
+            let mouseDown = new Event('down');
+            item.dispatchEvent(mouseDown);
+            // item.cleanUp();
+            // Count # of calls to showRipple
+            expect(item.showRipple.callCount).to.be.equal(0);
           });
         });
       })
