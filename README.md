@@ -1,2 +1,2 @@
-# morph-navbar-item
-Navigation bar item for polymorph components
+# morph-tabbar-item
+Tab bar item for polymorph components
