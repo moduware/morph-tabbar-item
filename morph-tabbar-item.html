@@ -12,8 +12,12 @@
 
       :host {
         --ios-grey:var(--polymorph-ios-gray-color);
-        --android-grey: var(--polymorph-android-gray-color);
-        --selected-label-color: #D12F3D;
+        --android-white: #fff;
+        --selected-label-color-ios: var(--polymorph-ios-blue-color);
+        --selected-label-color-android: var(--android-white);
+        --selected-text-color-android:  var(--android-white);
+        --selected-text-color-ios: var(--polymorph-ios-blue-color);;
+
 
 
         display: inline-block;
@@ -24,31 +28,45 @@
 
       :host([platform="ios"]) {
         --color: var(--ios-grey);
+        color: var(--color);
         padding-top: 4px;
         padding-bottom: 4px;
       }
 
       :host([platform="android"]) {
-        --color: var(--android-grey);
+        --color: var(--android-white);
         --ripple-color: var(--color);
+        color: var(--color);
         padding-top: 12px;
         padding-bottom: 12px;
       }
 
-      :host([platform="android"][selected])  .label {
-        --color: var(--selected-label-color);
+      /*:host([platform="android"][selected]{
+        color: var(--selected-color);
       }
 
-      :host([platform="android"][selected]) {
-        --ripple-color: var(--selected-label-color);
+      :host([platform="ios"][selected]{
+        color: var(--selected-color);
+      }*/
+
+      :host([platform="android"][selected][label])  .label {
+        color: var(--selected-label-color-android);
       }
 
-      :host([platform="ios"][selected])  .label {
-        --color: var(--selected-label-color);
+      :host([platform="android"][selected][label]) {
+        --ripple-color: var(--selected-label-color-android);
+      }
+
+      :host([platform="ios"][selected][label])  .label {
+        color: var(--selected-label-color-ios);
       }
 
       span {
         display: block;
+      }
+
+      .text {
+        margin-bottom: 8px;
       }
 
       :host([label]) .label {
@@ -61,7 +79,7 @@
         color:var(--color);
         line-height: 10px;
         margin: 0;
-        font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif"
+        font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif";
         letter-spacing: .01em;
         font-size: 10px;
       }
@@ -80,6 +98,14 @@
 
       :host(:not([label])) .label {
         display: none;
+      }
+
+      :host(:not([label])[selected][platform="android"]) {
+        color: var(--selected-text-color-andorid);
+      }
+
+      :host(:not([label])[selected][platform="ios"]) {
+        color: var(--selected-text-color-ios);
       }
 
       /* Ripple effect for buttons on Android */
@@ -110,6 +136,9 @@
         <img class="icon" id="icon"></img>
         <span id="label" class="label">[[name]]</span>
         <div id="rippleContainer" class="ripple--container"></div>
+        <span class="text">
+          <slot id="slot"></slot>
+        </span>
       </span>
 
   </template>
@@ -164,6 +193,10 @@
       }
       ready() {
         super.ready();
+
+        if (this.notSelectedImage != undefined) {
+          this.root.querySelector('.text').style.display = 'none';
+        }
 
         /**
          * Gesture addListener down
