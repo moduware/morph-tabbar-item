@@ -41,13 +41,6 @@
         padding-bottom: 12px;
       }
 
-      /*:host([platform="android"][selected]{
-        color: var(--selected-color);
-      }
-
-      :host([platform="ios"][selected]{
-        color: var(--selected-color);
-      }*/
 
       :host([platform="android"][selected][label])  .label {
         color: var(--selected-label-color-android);
@@ -66,7 +59,7 @@
       }
 
       .text {
-        margin-bottom: 8px;
+        display: inline-block;
       }
 
       :host([label]) .label {
