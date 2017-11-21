@@ -1,5 +1,4 @@
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../morph-element/morph-element.html">
+<link rel="import" href="/bower_components/morph-element/morph-element.html">
 <link rel="import" href="../morph-shared-colors/morph-shared-colors.html">
 <link rel="import" href="/bower_components/polymer/lib/utils/debounce.html">
 <link rel="import" href="/bower_components/polymer/lib/mixins/gesture-event-listeners.html">
@@ -144,7 +143,7 @@
      *
      * @customElement
      * @polymer
-     * @demo demo/index.html
+     * @demo morph-tabbar-item/demo/index.html
      */
     class MorphTabbarItem extends MorphElement {
       static get is() { return 'morph-tabbar-item'; }
@@ -224,11 +223,17 @@
 
       }
 
-
+      /**
+       * Observer for the changes of selected attribute.
+       */
       selectedObserver(changes) {
         this.setImageSource();
       }
 
+
+      /**
+       * Sets up the image source based on the selected attribute.
+       */
       setImageSource() {
         if (this.selected) {
           //if selected-image source is not specified, fallback is the not-selected-image source.
@@ -271,7 +276,7 @@
       }
 
       /**
-       * clean up the container for the ripple effect
+       * Cleans up the container for the ripple effect
        */
       cleanUp() {
         while (this.$.rippleContainer.firstChild) {
