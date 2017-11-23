@@ -35,20 +35,18 @@
 
       :host([platform="android"]) {
         --color: var(--android-white);
-        --ripple-color: var(--color);
+        
         color: var(--color);
         padding-top: 12px;
         padding-bottom: 12px;
       }
 
 
+
       :host([platform="android"][selected][label])  .label {
         color: var(--selected-label-color-android);
       }
 
-      :host([platform="android"][selected][label]) {
-        --ripple-color: var(--selected-label-color-android);
-      }
 
       :host([platform="ios"][selected][label])  .label {
         color: var(--selected-label-color-ios);
@@ -69,10 +67,10 @@
       }
 
       :host([platform="ios"][label]) .label {
-        color:var(--color);
+        color: var(--color);
         line-height: 10px;
         margin: 0;
-        font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif";
+        font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
         letter-spacing: .01em;
         font-size: 10px;
       }
@@ -103,6 +101,18 @@
 
       :host(:not([platform=android])) morph-ripple {
         display: none;
+      }
+
+      :host([platform="android"]) morph-ripple {
+        --ripple-color: var(--color);
+      }
+
+      :host([platform="android"][selected]) morph-ripple {
+        --ripple-color: var(--selected-label-color-android);
+      }
+
+      :host([platform="android"][selected][label]) morph-ripple {
+        --ripple-color: var(--selected-label-color-android);
       }
 
     </style>
