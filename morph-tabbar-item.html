@@ -35,7 +35,7 @@
 
       :host([platform="android"]) {
         --color: var(--android-white);
-        
+
         color: var(--color);
         padding-top: 12px;
         padding-bottom: 12px;
@@ -137,7 +137,7 @@
      * @polymer
      * @demo morph-tabbar-item/demo/index.html
      */
-    class MorphTabbarItem extends MorphElement {
+    class MorphTabbarItem extends MorphElement(Polymer.Element) {
       static get is() { return 'morph-tabbar-item'; }
       static get properties() {
         return {
