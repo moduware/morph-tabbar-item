@@ -8,6 +8,7 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
+    <link rel="import" href="/bower_components/morph-ripple/morph-ripple.html">
     <link rel="import" href="../morph-tabbar-item.html">
   </head>
   <body>
@@ -43,7 +44,7 @@
         // testing default Android Tabbar Item properties
         context('Android Default Tabbar Item', function() {
           // declare variable for item in this context only
-          let item, label, style;
+          let item, label, style, ripple, rippleStyle;
 
           // Create a test fixture
           beforeEach(function() {
@@ -52,14 +53,8 @@
             label = item.root.querySelector('.label');
             style = getComputedStyle(label);
 
-
-            // mocking showRipple method of our morph-tabbar-item
-            stub('morph-tabbar-item', {
-              showRipple: function() {
-                console.log('showRipple was called!');
-              }
-            });
-
+            ripple = item.root.querySelector('morph-ripple');
+            rippleStyle = getComputedStyle(ripple);
           });
 
           it('instantiating the item on android platform with default properties works', function() {
@@ -74,20 +69,14 @@
             expect(style.display).to.be.equal("none");
           });
 
-          it('Adding the ripple effect on android platform works', function() {
-            // testing for default ripple effect of android item
-            let mouseDown = new Event('down');
-            item.dispatchEvent(mouseDown);
-            // item.cleanUp();
-            // Count # of calls to showRipple
-            expect(item.showRipple.callCount).to.be.equal(1);
+          it('checking <morph-ripple> display on android works ', function () {
+            expect(rippleStyle.display).to.be.equal('block');
           });
         });
-
         // testing default Android Tabbar Item properties
         context('Android Default Tabbar Item with label', function() {
           // declare variable for item in this context only
-          let item, label, style;
+          let item, label, style, ripple, rippleStyle;
 
           // Create a test fixture
           beforeEach(function() {
@@ -96,13 +85,8 @@
             label = item.root.querySelector('.label');
             style = getComputedStyle(label);
 
-            // mocking showRipple method of our morph-tabbar-item
-            stub('morph-tabbar-item', {
-              showRipple: function() {
-                console.log('showRipple was called!');
-              }
-            });
-
+            ripple = item.root.querySelector('morph-ripple');
+            rippleStyle = getComputedStyle(ripple);
           });
 
           it('instantiating the item with label on android platform with label properties works', function() {
@@ -119,23 +103,16 @@
             expect(style.display).to.be.equal("block");
           });
 
-          it('Adding the ripple effect on android platform works', function() {
-            // testing for default ripple effect of android item
-            let mouseDown = new Event('down');
-            item.dispatchEvent(mouseDown);
-            // item.cleanUp();
-            // Count # of calls to showRipple
-            expect(item.showRipple.callCount).to.be.equal(1);
+          it('checking <morph-ripple> display on android works ', function () {
+            expect(rippleStyle.display).to.be.equal('block');
           });
-
-
 
         });
 
         // testing default Ios Tabbar Item properties
         context('Ios Default Tabbar Item', function() {
           // declare variable for item in this context only
-          let item, label, style;
+          let item, label, style, ripple, rippleStyle;
 
           // Create a test fixture
           beforeEach(function() {
@@ -144,12 +121,8 @@
             label = item.root.querySelector('.label');
             style = getComputedStyle(label);
 
-            // mocking showRipple method of our morph-tabbar-item
-            stub('morph-tabbar-item', {
-              showRipple: function() {
-                console.log('showRipple was called!');
-              }
-            });
+            ripple = item.root.querySelector('morph-ripple');
+            rippleStyle = getComputedStyle(ripple);
           });
 
           it('instantiating the item on ios platform with default properties works', function() {
@@ -164,20 +137,16 @@
             expect(style.display).to.be.equal("none");
           });
 
-          it('Not having the ripple effect on ios platform works', function() {
-            // testing for default ripple effect of ios item
-            let mouseDown = new Event('down');
-            item.dispatchEvent(mouseDown);
-            // item.cleanUp();
-            // Count # of calls to showRipple
-            expect(item.showRipple.callCount).to.be.equal(0);
+          it('checking <morph-ripple> display being none on ios works ', function () {
+            expect(rippleStyle.display).to.be.equal('none');
           });
+
         });
 
         // testing Ios Tabbar Item with Label properties
         context('Ios Default Tabbar Item with label', function() {
           // declare variable for item in this context only
-          let item, label, style;
+          let item, label, style, ripple, rippleStyle;
 
           // Create a test fixture
           beforeEach(function() {
@@ -186,12 +155,8 @@
             label = item.root.querySelector('.label');
             style = getComputedStyle(label);
 
-            // mocking showRipple method of our morph-tabbar-item
-            stub('morph-tabbar-item', {
-              showRipple: function() {
-                console.log('showRipple was called!');
-              }
-            });
+            ripple = item.root.querySelector('morph-ripple');
+            rippleStyle = getComputedStyle(ripple);
           });
 
 
@@ -209,13 +174,8 @@
             expect(style.display).to.be.equal("block");
           });
 
-          it('Not having the ripple effect on ios platform works', function() {
-            // testing for default ripple effect of ios item
-            let mouseDown = new Event('down');
-            item.dispatchEvent(mouseDown);
-            // item.cleanUp();
-            // Count # of calls to showRipple
-            expect(item.showRipple.callCount).to.be.equal(0);
+          it('checking <morph-ripple> display being none on ios works ', function () {
+            expect(rippleStyle.display).to.be.equal('none');
           });
         });
       })
