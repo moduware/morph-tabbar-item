@@ -4,7 +4,7 @@
   "main": "morph-tabbar-item.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
-    "morph-element": "https://github.com/nexpaq/morph-element.git#develop",
+    "morph-element": "https://github.com/nexpaq/morph-element.git#master",
     "morph-shared-colors": "https://github.com/moduware/morph-shared-colors.git#master",
     "morph-ripple": "https://github.com/moduware/morph-ripple.git#master"
   },
