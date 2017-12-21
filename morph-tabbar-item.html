@@ -180,16 +180,21 @@
         ];
       }
 
-      /**
-       * Observer for the changes of selected attribute.
-       */
+
+
+    /**
+     * selectedObserver - Observer for the changes of selected attribute.
+     */       
       selectedObserver(changes) {
         this.setImageSource();
       }
 
 
+
+
       /**
-       * Sets up the image source based on the selected attribute.
+       * setImageSource - Sets up the image source based on the selected attribute.
+       *
        */
       setImageSource() {
         if (this.selected) {
