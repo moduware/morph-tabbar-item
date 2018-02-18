@@ -43,12 +43,12 @@
 
 
 
-      :host([platform="android"][selected][label])  .label {
+      :host([platform="android"][selected][hasLabel])  .label {
         color: var(--selected-label-color-android);
       }
 
 
-      :host([platform="ios"][selected][label])  .label {
+      :host([platform="ios"][selected][hasLabel])  .label {
         color: var(--selected-label-color-ios);
       }
 
@@ -60,17 +60,17 @@
         display: inline-block;
       }
 
-      :host([label]) {
+      :host([hasLabel]) {
         margin-top:25px;
       }
 
-      :host([label]) .label {
+      :host([hasLabel]) .label {
         display: block;
         margin: 0;
         position: relative;
       }
 
-      :host([platform="ios"][label]) .label {
+      :host([platform="ios"][hasLabel]) .label {
         color: var(--color);
         line-height: 10px;
         margin: 0;
@@ -79,7 +79,7 @@
         font-size: 10px;
       }
 
-      :host([platform="android"][label]) .label {
+      :host([platform="android"][hasLabel]) .label {
         line-height: 1;
         color: var(--color);
         margin: 0;
@@ -91,15 +91,15 @@
         max-width: 100%;
       }
 
-      :host(:not([label])) .label {
+      :host(:not([hasLabel])) .label {
         display: none;
       }
 
-      :host(:not([label])[selected][platform="android"]) {
+      :host(:not([hasLabel])[selected][platform="android"]) {
         color: var(--selected-text-color-andorid);
       }
 
-      :host(:not([label])[selected][platform="ios"]) {
+      :host(:not([hasLabel])[selected][platform="ios"]) {
         color: var(--selected-text-color-ios);
       }
 
@@ -115,7 +115,7 @@
         --ripple-color: var(--selected-label-color-android);
       }
 
-      :host([platform="android"][selected][label]) morph-ripple {
+      :host([platform="android"][selected][hasLabel]) morph-ripple {
         --ripple-color: var(--selected-label-color-android);
       }
 
@@ -163,7 +163,7 @@
             reflectToAttribute: true,
             notify: true
           },
-          label: {
+          hasLabel: {
             type: Boolean,
             value: false,
             reflectToAttribute: true,
