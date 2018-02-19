@@ -115,6 +115,10 @@
         --ripple-color: var(--selected-label-color-android);
       }
 
+      :host([no-image]) img#icon {
+        visibility: hidden;
+      }
+
     </style>
       <span name="[[name]]">
         <img class="icon" id="icon"></img>
@@ -164,6 +168,12 @@
             value: false,
             reflectToAttribute: true,
             notify: true
+          },
+          noImage: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true,
+            notify: true
           }
         };
       }
@@ -173,17 +183,25 @@
         ];
       }
 
+      connectedCallback() {
+        super.connectedCallback();
+        this.checkSelectedImageSet();
+      }
 
 
-    /**
-     * selectedObserver - Observer for the changes of selected attribute.
-     */       
+      /**
+      * selectedObserver - Observer for the changes of selected attribute.
+      */       
       selectedObserver(changes) {
         this.setImageSource();
       }
 
 
-
+      checkSelectedImageSet() {
+        if (this.notSelectedImage == undefined) {
+          this.set('noImage', true);
+        }
+      }
 
       /**
        * setImageSource - Sets up the image source based on the selected attribute.
