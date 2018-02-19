@@ -43,12 +43,12 @@
 
 
 
-      :host([platform="android"][selected][hasLabel])  .label {
+      :host([platform="android"][selected][has-label])  .label {
         color: var(--selected-label-color-android);
       }
 
 
-      :host([platform="ios"][selected][hasLabel])  .label {
+      :host([platform="ios"][selected][has-label])  .label {
         color: var(--selected-label-color-ios);
       }
 
@@ -60,13 +60,13 @@
         display: inline-block;
       }
 
-      :host([hasLabel]) .label {
+      :host([has-label]) .label {
         display: block;
         margin: 0;
         position: relative;
       }
 
-      :host([platform="ios"][hasLabel]) .label {
+      :host([platform="ios"][has-label]) .label {
         color: var(--color);
         line-height: 10px;
         margin: 0;
@@ -75,7 +75,7 @@
         font-size: 10px;
       }
 
-      :host([platform="android"][hasLabel]) .label {
+      :host([platform="android"][has-label]) .label {
         line-height: 1;
         color: var(--color);
         margin: 0;
@@ -87,15 +87,15 @@
         max-width: 100%;
       }
 
-      :host(:not([hasLabel])) .label {
+      :host(:not([has-label])) .label {
         display: none;
       }
 
-      :host(:not([hasLabel])[selected][platform="android"]) {
+      :host(:not([has-label])[selected][platform="android"]) {
         color: var(--selected-text-color-andorid);
       }
 
-      :host(:not([hasLabel])[selected][platform="ios"]) {
+      :host(:not([has-label])[selected][platform="ios"]) {
         color: var(--selected-text-color-ios);
       }
 
@@ -111,7 +111,7 @@
         --ripple-color: var(--selected-label-color-android);
       }
 
-      :host([platform="android"][selected][hasLabel]) morph-ripple {
+      :host([platform="android"][selected][has-label]) morph-ripple {
         --ripple-color: var(--selected-label-color-android);
       }
 
