@@ -63,7 +63,7 @@ Custom property                  | Description                            | Defa
 ---------------------------------|----------------------------------------|--------------------
 `--color`                        | Color of the tabbar item               | #fff
 `--ripple-color`                 | Color of the ripple effect on the item | `var(--color)`
-`--selected-text-color-android`  | Text color of selected item            | #fff
+`--ripple-color-selected`        | Ripple effect color of selected item   | #fff
 `--selected-label-color-android` | Label text color of the selected item  | #fff
 
 -For IOS platform;
@@ -71,5 +71,4 @@ Custom property                  | Description                            | Defa
 Custom property                  | Description                            | Default
 ---------------------------------|----------------------------------------|--------------------
 `--color`                        | Color of the tabbar item               | #8e8e93
-`--selected-text-color-ios`      | Label text color of the selected item  | #007aff
 `--selected-label-color-ios`     | Label text color of the selected item  | #007aff
