@@ -15,8 +15,6 @@
         --android-white: #fff;
         --selected-label-color-ios: var(--polymorph-ios-blue-color);
         --selected-label-color-android: var(--android-white);
-        --selected-text-color-android:  var(--android-white);
-        --selected-text-color-ios: var(--polymorph-ios-blue-color);
         --ripple-color-selected: var(--selected-label-color-android);
 
 
@@ -41,12 +39,9 @@
         padding-bottom: 12px;
       }
 
-
-
       :host([platform="android"][selected][has-label])  .label {
         color: var(--selected-label-color-android);
       }
-
 
       :host([platform="ios"][selected][has-label])  .label {
         color: var(--selected-label-color-ios);
@@ -89,14 +84,6 @@
 
       :host(:not([has-label])) .label {
         display: none;
-      }
-
-      :host(:not([has-label])[selected][platform="android"]) {
-        color: var(--selected-text-color-andorid);
-      }
-
-      :host(:not([has-label])[selected][platform="ios"]) {
-        color: var(--selected-text-color-ios);
       }
 
       :host(:not([platform=android])) morph-ripple {
