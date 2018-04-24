@@ -4,8 +4,6 @@
 <link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../morph-ripple/morph-ripple.html">
 
-
-
 <dom-module id="morph-tabbar-item">
   <template>
     <style>
@@ -192,6 +190,7 @@
        *
        */
       setImageSource() {
+        if (this.noImage || this.notSelectedImage == undefined) return;
         if (this.selected) {
           //if selected-image source is not specified, fallback is the not-selected-image source.
           this.$.icon.src = this.selectedImage || this.notSelectedImage;
