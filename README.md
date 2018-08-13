@@ -19,6 +19,15 @@ For the information about how to clone the desired repository, running the local
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="morph-tabbar-item.html">
+    <custom-style>
+      <style is="custom-style">
+        morph-tabbar-item {
+  -       --color: gray;
+  -       --selected-label-color-android: gray;
+  -       --selected-label-color-ios: #bd2d40;
+  -      }
+      </style>
+    </custom-style>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
