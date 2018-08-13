@@ -12,6 +12,50 @@ For the information about how to clone the desired repository, running the local
 
 ## Demo
 
+<!---
+
+```
+
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="morph-tabbar-item.html">
+    <style>
+      morph-tabbar-item {
+      	--color: gray;
+        --selected-label-color-android: gray;
+        --selected-label-color-ios: #bd2d40;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+
+-->
+
+```html
+
+<h3>Ios morph-tabbar-item demo</h3>
+<morph-tabbar-item id="first-item" platform="ios" name="favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg">
+</morph-tabbar-item>
+<morph-tabbar-item id="second-item" platform="ios" name="favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg" selected>
+</morph-tabbar-item>
+
+<h3>Ios morph-tabbar-item with label</h3>
+<morph-tabbar-item id="first-item" platform="ios" name="Favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg"  has-label>Favorite
+</morph-tabbar-item>
+<morph-tabbar-item id="second-item" platform="ios" name="Favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg" selected has-label>Favorite
+</morph-tabbar-item>
+
+<h3>Android morph-tabbar-item with label</h3>
+<morph-tabbar-item id="first-item" platform="android" name="Favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg"  has-label>Heart
+</morph-tabbar-item>
+<morph-tabbar-item id="second-item" platform="android" name="Favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg" selected has-label>Heart
+</morph-tabbar-item>
+
+```
+
 - Here is a quick demo of the morph-tabbar-item element.
 
   <p align="center">
@@ -51,13 +95,15 @@ For the information about how to clone the desired repository, running the local
 ## Attributes
 
 |      Custom Attribute      |   Type  |                                   Description                                  |              Default              |
-|:--------------------------:|:-------:|:------------------------------------------------------------------------------:|:---------------------------------:|
+|:--------------------------|:-------:|:------------------------------------------------------------------------------:|:---------------------------------:|
 |       **`platform`**       |  String | Name of the platform, get assigned<br> automatically by the morph element.     | Either **`andorid`** or **`ios`** |
 | **`name`** <br> `required` |  String | Parent element uses the name attribute<br> to be able to manipulate the items. | **`false`**                       |
-|         **`label`**        | Boolean | To have a tabbar item with label assign it to **`true`**.                      | **`false`**                       |
+|         **`has-label`**        | Boolean | To have a tabbar item with label assign it to **`true`**.                      | **`false`**                       |
 | **`not-selected-image`**   |  String | Image source for not selected state of the item.                               | **`null`**                        |
 |    **`selected-image`**    |  String | Image source for selected state of the item.                                   | **`not-selected-image`**          |
 |       **`selected`**       | Boolean | If  **`true`**, item is the selected one.                                      | **`false`**                       |
+
+Note: When using `has-label` on the `morph-tabbar-item`, it is important to put `label` on the parent `morph-tabbar` to have proper alignment and/or spacing for the text/label
 
 ## Styling
 
