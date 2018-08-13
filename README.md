@@ -1,13 +1,18 @@
-## &lt;morph-tabbar-item&gt;
+# morph-tabbar-item
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/PolymerElements/paper-progress)
 
 Tab bar item that morphs for current mobile OS.
 
-## Getting Started:
-For the information about how to clone the desired repository, running the local server and testing, please refer to this [link](https://github.com/moduware/polymorph-components/blob/master/INFO.md).
+`morph-tabbar-item` component changes its appearance automatically based on whether the platform or device is IOS or Android.
 
+## Getting Started
 
-  ## Demo
-  - Here is a quick demo of the morph-tabbar-item element.
+For the information about how to clone the desired repository, running the local server and testing, please refer to Polymorph elements getting started docs at the end of this repository.
+
+## Demo
+
+- Here is a quick demo of the morph-tabbar-item element.
 
   <p align="center">
     <img src="demo-images/ios-demo.png" alt="IOS morph-tabbar-item demo"/>
@@ -29,7 +34,6 @@ For the information about how to clone the desired repository, running the local
     <img src="demo-images/android-demo.png" alt="Android morph-tabbar-item demo"/>
   </p>
 
-
   ```html
 
   <demo-snippet>
@@ -44,7 +48,7 @@ For the information about how to clone the desired repository, running the local
 
   ```
 
-### Attributes
+## Attributes
 
 |      Custom Attribute      |   Type  |                                   Description                                  |              Default              |
 |:--------------------------:|:-------:|:------------------------------------------------------------------------------:|:---------------------------------:|
@@ -55,9 +59,9 @@ For the information about how to clone the desired repository, running the local
 |    **`selected-image`**    |  String | Image source for selected state of the item.                                   | **`not-selected-image`**          |
 |       **`selected`**       | Boolean | If  **`true`**, item is the selected one.                                      | **`false`**                       |
 
-### Styling
+## Styling
 
--For Android platform;
+- For Android platform
 
 Custom property                  | Description                            | Default
 ---------------------------------|----------------------------------------|--------------------
@@ -72,3 +76,9 @@ Custom property                  | Description                            | Defa
 ---------------------------------|----------------------------------------|--------------------
 `--color`                        | Color of the tabbar item               | #8e8e93
 `--selected-label-color-ios`     | Label text color of the selected item  | #007aff
+
+## Further help
+
+For more information on how to install and run test please go here - [Polymorph elements getting started]
+
+[Polymorph elements getting started]: https://github.com/moduware/polymorph-components/blob/master/INFO.md
