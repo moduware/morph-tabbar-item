@@ -18,14 +18,16 @@ For the information about how to clone the desired repository, running the local
 <custom-element-demo>
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../morph-shared-colors/morph-shared-colors.html">
+    <link rel="import" href="../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="morph-tabbar-item.html">
     <custom-style>
       <style is="custom-style">
         morph-tabbar-item {
-  -       --color: gray;
-  -       --selected-label-color-android: gray;
-  -       --selected-label-color-ios: #bd2d40;
-  -      }
+          --color: gray;
+          --selected-label-color-android: gray;
+          --selected-label-color-ios: #bd2d40;
+        }
       </style>
     </custom-style>
     <next-code-block></next-code-block>
