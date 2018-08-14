@@ -51,11 +51,11 @@ For the information about how to clone the desired repository, running the local
 <morph-tabbar-item id="second-item" platform="ios" name="favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg" selected has-label>Favorite
 </morph-tabbar-item>
 
-<!-- <h3>Android morph-tabbar-item with label</h3>
+<h3>Android morph-tabbar-item with label</h3>
 <morph-tabbar-item id="first-item" platform="android" name="favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg"  has-label>Heart
 </morph-tabbar-item>
 <morph-tabbar-item id="second-item" platform="android" name="favorite" not-selected-image="img/icon.svg" selected-image="img/icon_selected.svg" selected has-label>Heart
-</morph-tabbar-item> -->
+</morph-tabbar-item>
 
 ```
 
