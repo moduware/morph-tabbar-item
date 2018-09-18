@@ -5,17 +5,34 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
     <title>morph-tabbar-item demo</title>
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script type="module">
+      import '../node_modules/@polymer/morph-shared-colors/morph-shared-colors.js';
+      import '../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+      import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
+      import '../morph-tabbar-item.js';
+    </script>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="/bower_components/morph-shared-colors/morph-shared-colors.html">
-    <link rel="import" href="/bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="/bower_components/iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="/bower_components/morph-tabbar-item/morph-tabbar-item.html"
-          onerror="console.warn('Can\'t load button from bower_components, loading local version')">
-    <link rel="import" href="../morph-tabbar-item.html">
+    <!-- <script type="module" src="/node_modules/morph-shared-colors/morph-shared-colors.js"></script> -->
+    <!-- <script type="module" src="/node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script> -->
+    <!-- <script type="module" src="/node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script> -->
+    <!-- <link rel="import" href="/bower_components/morph-tabbar-item/morph-tabbar-item.html"
+          onerror="console.warn('Can\'t load button from bower_components, loading local version')"> -->
+    <!-- <script type="module" src="../morph-tabbar-item.js"></script> -->
 
 
-    <custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
 
       morph-tabbar-item {
@@ -29,17 +46,23 @@
       }
 
       </style>
-    </custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
   </head>
   <body>
-    <div class="vertical-section-container centered">
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
       <h3>Basic morph-tabbar-item demo</h3>
       <demo-snippet>
         <template>
           <h3>Ios morph-tabbar-item demo</h3>
           <morph-tabbar-item id="first-item" platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg">
           </morph-tabbar-item>
-          <morph-tabbar-item id="second-item" platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected>
+          <morph-tabbar-item id="second-item" platform="ios" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected="">
           </morph-tabbar-item>
         </template>
       </demo-snippet>
@@ -47,9 +70,9 @@
       <demo-snippet>
         <template>
           <h3>Ios morph-tabbar-item with label</h3>
-          <morph-tabbar-item id="first-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg"  has-label>Favorite
+          <morph-tabbar-item id="first-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" has-label="">Favorite
           </morph-tabbar-item>
-          <morph-tabbar-item id="second-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected has-label>Favorite
+          <morph-tabbar-item id="second-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected="" has-label="">Favorite
           </morph-tabbar-item>
         </template>
       </demo-snippet>
@@ -57,9 +80,9 @@
       <demo-snippet>
         <template>
           <h3>Ios morph-tabbar-item with label and no image</h3>
-          <morph-tabbar-item id="first-item" platform="ios" name="Favorite" has-label>Favorite
+          <morph-tabbar-item id="first-item" platform="ios" name="Favorite" has-label="">Favorite
           </morph-tabbar-item>
-          <morph-tabbar-item id="second-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected has-label no-image>Favorite
+          <morph-tabbar-item id="second-item" platform="ios" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected="" has-label="" no-image="">Favorite
           </morph-tabbar-item>
         </template>
       </demo-snippet>
@@ -69,7 +92,7 @@
           <h3>Android morph-tabbar-item demo</h3>
           <morph-tabbar-item id="first-item" platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg">
           </morph-tabbar-item>
-          <morph-tabbar-item id="second-item" platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected>
+          <morph-tabbar-item id="second-item" platform="android" name="favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected="">
           </morph-tabbar-item>
         </template>
       </demo-snippet>
@@ -77,15 +100,16 @@
       <demo-snippet>
         <template>
           <h3>Android morph-tabbar-item with label</h3>
-          <morph-tabbar-item id="first-item" platform="android" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg"  has-label>Heart
+          <morph-tabbar-item id="first-item" platform="android" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" has-label="">Heart
           </morph-tabbar-item>
-          <morph-tabbar-item id="second-item" platform="android" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected has-label>Heart
+          <morph-tabbar-item id="second-item" platform="android" name="Favorite" not-selected-image="../img/icon.svg" selected-image="../img/icon_selected.svg" selected="" has-label="">Heart
           </morph-tabbar-item>
         </template>
       </demo-snippet>
-    </div>
-    <script>
+    </div>`;
 
-    </script>
+document.body.appendChild($_documentContainer.content);
+</script>
+    
   </body>
 </html>
