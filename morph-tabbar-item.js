@@ -1,4 +1,4 @@
-import '@polymer/morph-element/morph-element.js';
+import { MorphElement } from '@polymer/morph-element/morph-element.js';
 import '@polymer/morph-shared-colors/morph-shared-colors.js';
 import '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
