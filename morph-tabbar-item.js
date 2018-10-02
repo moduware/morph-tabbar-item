@@ -1,9 +1,9 @@
-import { MorphElement } from '@polymer/morph-element/morph-element.js';
-import '@polymer/morph-shared-colors/morph-shared-colors.js';
+import { MorphElement } from 'morph-element/morph-element.js';
+import 'morph-shared-colors/morph-shared-colors.js';
+import 'morph-shared-styles/morph-shared-styles.js';
+import 'morph-ripple/morph-ripple.js';
 import '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-import '@polymer/morph-shared-styles/morph-shared-styles.js';
-import '@polymer/morph-ripple/morph-ripple.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 /**
