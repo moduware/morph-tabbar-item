@@ -2,6 +2,9 @@
   "description": "Tab bar item for polymorph components",
   "name": "@polymer/morph-tabbar-item",
   "version": "1.0.0",
+  "scripts": {
+    "start": "polymer serve --npm --module-resolution=node"
+  },
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
