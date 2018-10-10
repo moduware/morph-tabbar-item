@@ -1,17 +1,20 @@
-import { MorphElement } from 'morph-element/morph-element.js';
-import 'morph-shared-colors/morph-shared-colors.js';
-import 'morph-shared-styles/morph-shared-styles.js';
-import 'morph-ripple/morph-ripple.js';
+import { MorphElement } from '@moduware/morph-element/morph-element.js';
+import '@moduware/morph-ripple/morph-ripple.js';
+import '@moduware/morph-shared-colors/morph-shared-colors.js';
+import '@moduware/morph-shared-styles/morph-shared-styles.js';
 import '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+
 /**
  * `morph-tabbar-item`
  * Tab bar item for polymorph components
  *
  * @customElement
  * @polymer
+ * @extends HTMLElement
+ * 
  * @demo morph-tabbar-item/demo/index.html
  */
 class MorphTabbarItem extends MorphElement(PolymerElement) {
