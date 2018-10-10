@@ -7,7 +7,6 @@
     <title>morph-tabbar-item demo</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <script type="module">
-      import '../node_modules/morph-shared-colors/morph-shared-colors.js';
       import '../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
       import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
       import '../morph-tabbar-item.js';
@@ -20,19 +19,11 @@
           onerror="console.warn('Can\'t load button from bower_components, loading local version')"> -->
     <!-- <script type="module" src="../morph-tabbar-item.js"></script> -->
 
-
-    <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
     <script type="module">
       var $_documentContainer = document.createElement('template');
 
-      $_documentContainer.innerHTML = `<custom-style>
+      $_documentContainer.innerHTML = /*html*/`
+      <custom-style>
         <style is="custom-style" include="demo-pages-shared-styles">
 
           morph-tabbar-item {
@@ -46,7 +37,8 @@
           }
 
         </style>
-      </custom-style>`;
+      </custom-style>
+      `;
 
       document.body.appendChild($_documentContainer.content);
 
@@ -58,7 +50,8 @@
 
       var $_documentContainer = document.createElement('template');
 
-      $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+      $_documentContainer.innerHTML = /*html*/`
+      <div class="vertical-section-container centered">
         <h3>Basic morph-tabbar-item demo</h3>
         <demo-snippet>
           <template>
@@ -109,7 +102,8 @@
             </morph-tabbar-item>
           </template>
         </demo-snippet>
-      </div>`;
+      </div>
+      `;
 
       document.body.appendChild($_documentContainer.content);
 
