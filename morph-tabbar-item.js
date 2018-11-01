@@ -2,8 +2,8 @@ import { MorphElement } from '@moduware/morph-element/morph-element.js';
 import '@moduware/morph-ripple/morph-ripple.js';
 import '@moduware/morph-shared-colors/morph-shared-colors.js';
 import '@moduware/morph-shared-styles/morph-shared-styles.js';
-import '@polymer/polymer/lib/utils/debounce.js';
-import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+// import '@polymer/polymer/lib/utils/debounce.js';
+// import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
