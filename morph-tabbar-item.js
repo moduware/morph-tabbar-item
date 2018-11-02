@@ -1,11 +1,7 @@
-// import { MorphElement } from '@moduware/morph-element/morph-element.js';
-
 import { LitElement, html } from '@polymer/lit-element';
 import '@moduware/morph-ripple/morph-ripple.js';
 import '@moduware/morph-shared-colors/morph-shared-colors.js';
 import '@moduware/morph-shared-styles/morph-shared-styles.js';
-// import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-// import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
 import { getPlatform } from '/src/morph-element.js';
 
@@ -14,7 +10,6 @@ import { getPlatform } from '/src/morph-element.js';
  * Tab bar item for polymorph components
  *
  * @customElement
- * @polymer
  * @extends HTMLElement
  * 
  * @demo morph-tabbar-item/demo/index.html
@@ -132,14 +127,14 @@ class MorphTabbarItem extends LitElement {
   }
 
   static get is() { return 'morph-tabbar-item'; }
+
   static get properties() {
     return {
       platform: { String },
 
       name: {
         type: String,
-        reflect: true,
-        notify: true
+        reflect: true
       },
       selectedImage: {
         type: String,
@@ -153,20 +148,15 @@ class MorphTabbarItem extends LitElement {
       },
       selected: {
         type: Boolean,
-        value: false,
-        reflect: true,
-        notify: true
+        reflect: true
       },
       hasLabel: {
         type: Boolean,
-        value: false,
-        reflect: true,
-        notify: true
+        reflect: true
       },
       noImage: {
         type: Boolean,
-        reflect: true,
-        notify: true
+        reflect: true
       }
     };
   }
@@ -175,6 +165,8 @@ class MorphTabbarItem extends LitElement {
     super();
 
     this.noImage = false;
+    this.hasLabel = false;
+    this.selected = false;
     this.platform = getPlatform();
   }
 }
