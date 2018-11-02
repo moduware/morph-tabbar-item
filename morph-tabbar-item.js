@@ -1,11 +1,13 @@
-import { MorphElement } from '@moduware/morph-element/morph-element.js';
+// import { MorphElement } from '@moduware/morph-element/morph-element.js';
+
+import { LitElement, html } from '@polymer/lit-element';
 import '@moduware/morph-ripple/morph-ripple.js';
 import '@moduware/morph-shared-colors/morph-shared-colors.js';
 import '@moduware/morph-shared-styles/morph-shared-styles.js';
-// import '@polymer/polymer/lib/utils/debounce.js';
-// import '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+// import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+// import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+
+import { getPlatform } from '/src/morph-element.js';
 
 /**
  * `morph-tabbar-item`
@@ -17,8 +19,8 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
  * 
  * @demo morph-tabbar-item/demo/index.html
  */
-class MorphTabbarItem extends MorphElement(PolymerElement) {
-  static get template() {
+class MorphTabbarItem extends LitElement {
+  render() {
     return html`
     <style include="morph-shared-styles">
 
@@ -116,90 +118,64 @@ class MorphTabbarItem extends MorphElement(PolymerElement) {
       }
 
     </style>
-      <span name="[[name]]">
-        <img class="icon" id="icon">
-        <span id="label" class="label"><slot id="slot"></slot></span>
-        <morph-ripple></morph-ripple>
-      </span>
-`;
+
+    <span name="${this.name}">
+      ${this.noImage 
+        ? html``
+        : html`<img class="icon" id="icon" src="${this.selected ? this.selectedImage : this.notSelectedImage}">`
+      }
+      <span id="label" class="label"><slot id="slot"></slot></span>
+      <morph-ripple></morph-ripple>
+    </span>
+
+    `;
   }
 
   static get is() { return 'morph-tabbar-item'; }
   static get properties() {
     return {
+      platform: { String },
+
       name: {
         type: String,
-        reflectToAttribute: true,
+        reflect: true,
         notify: true
       },
       selectedImage: {
         type: String,
-        reflectToAttribute: true,
-        notify: true
+        reflect: true,
+        attribute: 'selected-image'
       },
       notSelectedImage: {
         type: String,
-        reflectToAttribute: true,
-        notify: true
+        reflect: true,
+        attribute: 'not-selected-image'
       },
       selected: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true,
+        reflect: true,
         notify: true
       },
       hasLabel: {
         type: Boolean,
         value: false,
-        reflectToAttribute: true,
+        reflect: true,
         notify: true
       },
       noImage: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true,
+        reflect: true,
         notify: true
       }
     };
   }
-  static get observers() {
-    return [
-      'selectedObserver(selected)',
-    ];
-  }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.checkSelectedImageSet();
-  }
+  constructor() {
+    super();
 
-
-  /**
-  * selectedObserver - Observer for the changes of selected attribute.
-  */
-  selectedObserver(changes) {
-    this.setImageSource();
-  }
-
-
-  checkSelectedImageSet() {
-    if (this.notSelectedImage == undefined) {
-      this.set('noImage', true);
-    }
-  }
-
-  /**
-   * setImageSource - Sets up the image source based on the selected attribute.
-   *
-   */
-  setImageSource() {
-    if (this.noImage || this.notSelectedImage == undefined) return;
-    if (this.selected) {
-      //if selected-image source is not specified, fallback is the not-selected-image source.
-      this.$.icon.src = this.selectedImage || this.notSelectedImage;
-    } else {
-      this.$.icon.src = this.notSelectedImage;
-    }
+    this.noImage = false;
+    this.platform = getPlatform();
   }
 }
 
