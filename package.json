@@ -1,7 +1,7 @@
 {
   "description": "Tab bar item for polymorph components",
   "name": "@moduware/morph-tabbar-item",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "start": "polymer serve --npm --module-resolution=node",
     "test": "wct"
