@@ -2,8 +2,7 @@ import { LitElement, html } from '@polymer/lit-element';
 import '@moduware/morph-ripple/morph-ripple.js';
 import '@moduware/morph-shared-colors/morph-shared-colors.js';
 import '@moduware/morph-shared-styles/morph-shared-styles.js';
-
-import { getPlatform } from '/src/morph-element.js';
+import { getPlatform } from '@moduware/lit-utils';
 
 /**
  * `morph-tabbar-item`
@@ -130,7 +129,10 @@ class MorphTabbarItem extends LitElement {
 
   static get properties() {
     return {
-      platform: { String },
+      platform: { 
+        type: String, 
+        reflect: true
+      },
 
       name: {
         type: String,
@@ -167,7 +169,17 @@ class MorphTabbarItem extends LitElement {
     this.noImage = false;
     this.hasLabel = false;
     this.selected = false;
-    this.platform = getPlatform();
+  }
+
+  /**
+   * lit-element lifecycle called once before the first updated().
+   */
+  firstUpdated() {
+    super.firstUpdated();
+    // check first if platform assigned in html markup before using getPlatform to auto detect platform
+    if (!this.hasAttribute('platform')) {
+      this.platform = getPlatform();
+    }
   }
 }
 

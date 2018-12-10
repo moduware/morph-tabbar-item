@@ -3,7 +3,8 @@
   "name": "@moduware/morph-tabbar-item",
   "version": "1.0.0",
   "scripts": {
-    "start": "polymer serve --npm --module-resolution=node"
+    "start": "polymer serve --npm --module-resolution=node",
+    "test": "wct"
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@moduware/morph-ripple": "^1.0.0",
+    "@moduware/lit-utils": "^1.0.0",
     "@moduware/morph-shared-colors": "^1.0.0",
     "@moduware/morph-shared-styles": "^1.0.0",
     "@polymer/lit-element": "^0.6.2"
@@ -21,6 +23,6 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
     "wct-browser-legacy": "^1.0.1",
     "@webcomponents/webcomponentsjs": "^2.0.0",
-    "wct-istanbub": "^0.2.7"
+    "wct-istanbub": "^0.2.8"
   }
 }
