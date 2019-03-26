@@ -1,5 +1,5 @@
 {
-  "description": "Tab bar item for polymorph components",
+  "description": "Tab bar item custom web component for polymorph components that uses LitElement base class",
   "name": "@moduware/morph-tabbar-item",
   "version": "1.1.0",
   "scripts": {
@@ -13,11 +13,10 @@
   "main": "morph-tabbar-item.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "@moduware/morph-ripple": "^1.0.0",
+    "lit-element": "^2.0.1",
+    "@moduware/morph-ripple": "^2.0.0",
     "@moduware/lit-utils": "^1.0.0",
-    "@moduware/morph-shared-colors": "^1.0.0",
-    "@moduware/morph-shared-styles": "^1.0.0",
-    "@polymer/lit-element": "^0.6.2"
+    "@moduware/morph-shared-colors": "^1.0.0"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
