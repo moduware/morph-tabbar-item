@@ -1,7 +1,7 @@
 {
   "description": "Tab bar item custom web component for polymorph components that uses LitElement base class",
   "name": "@moduware/morph-tabbar-item",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "scripts": {
     "start": "polymer serve --npm --module-resolution=node",
     "test": "wct"
