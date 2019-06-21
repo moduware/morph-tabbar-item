@@ -24,17 +24,27 @@ class MorphTabbarItem extends LitElement {
           --ripple-color-selected: var(--selected-label-color-android);
       
       
-          display: inline-block;
+          display: flex;
+          justify-content: stretch;
           text-align: center;
           position: relative;
           overflow: hidden;
+        }
+
+        .container {
+          display: flex;
+          flex-grow: 1;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
         }
       
         :host([platform="ios"]) {
           --color: var(--ios-grey);
           color: var(--color);
-          padding-top: 4px;
-          padding-bottom: 4px;
+          /*padding-top: 4px;
+          padding-bottom: 4px;*/
           font-family: -apple-system, 'SF UI Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
       
@@ -42,8 +52,8 @@ class MorphTabbarItem extends LitElement {
           --color: var(--android-white);
       
           color: var(--color);
-          padding-top: 12px;
-          padding-bottom: 12px;
+          /*padding-top: 12px;
+          padding-bottom: 12px;*/
           font-family: Roboto, Noto, Helvetica, Arial, sans-serif;
         }
       
@@ -55,10 +65,6 @@ class MorphTabbarItem extends LitElement {
           color: var(--selected-label-color-ios);
         }
       
-        span {
-          display: block;
-        }
-      
         .text {
           display: inline-block;
         }
@@ -67,6 +73,7 @@ class MorphTabbarItem extends LitElement {
           display: block;
           margin: 0;
           position: relative;
+          width: 100%;
         }
       
         :host([platform="ios"][has-label]) .label {
@@ -117,14 +124,14 @@ class MorphTabbarItem extends LitElement {
   render() {
     return html`
 
-      <span name="${this.name}">
+      <div name="${this.name}" class="container">
         ${this.noImage 
           ? html``
           : html`<img class="icon" id="icon" src="${this.selected ? this.selectedImage : this.notSelectedImage}">`
         }
-        <span id="label" class="label"><slot id="slot"></slot></span>
+        <div id="label" class="label"><slot id="slot"></slot></div>
         <morph-ripple></morph-ripple>
-      </span>
+      </div>
 
     `;
   }
