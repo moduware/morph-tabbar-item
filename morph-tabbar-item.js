@@ -125,6 +125,7 @@ class MorphTabbarItem extends LitElement {
     return html`
 
       <div name="${this.name}" class="container">
+        <slot name="icon-badge"></slot>
         ${this.noImage 
           ? html``
           : html`<img class="icon" id="icon" src="${this.selected ? this.selectedImage : this.notSelectedImage}">`
