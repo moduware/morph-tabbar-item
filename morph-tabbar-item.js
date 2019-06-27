@@ -79,7 +79,7 @@ class MorphTabbarItem extends LitElement {
         :host([platform="ios"][has-label]) .label {
           color: var(--color);
           line-height: 10px;
-          margin: 0;
+          margin: 2px 0 0 0;
           font-family: "-apple-system", "SF UI Text", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
           letter-spacing: .01em;
           font-size: 10px;
